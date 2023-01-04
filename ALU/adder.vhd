@@ -4,15 +4,15 @@ use ieee.std_logic_unsigned.all;
 
 entity adder is
     port (
-        a, b: in std_logic_vector(15 downto 0);
-        res : out std_logic_vector(15 downto 0);
-        c_out: out std_logic
+        aa, ba: in std_logic_vector(15 downto 0);
+        sum: out std_logic_vector(15 downto 0);
+        ca: out std_logic
     );
 end adder;
 
 architecture dataflow of adder is
 begin
-    res <= a + b;
-    c_out <= '1' when a+b > 65535 else '0';
+    sum <= aa + ba;
+    ca <= '1' when aa+ba > 65535 else '0';
 end dataflow;
 
