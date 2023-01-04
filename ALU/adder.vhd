@@ -10,7 +10,7 @@ entity adder is
     );
 end adder;
 
-architecture dataflow of adder16 is
+architecture dataflow of adder is
 begin
     sub <= a xor b;
     c_out <= '1' when (a < b) else '0';
