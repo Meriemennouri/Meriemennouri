@@ -6,7 +6,7 @@ H: in STD_LOGIC;
 reset : in STD_LOGIC;
 data_w : in STD_LOGIC_VECTOR (15 downto 0);
 data_r : out STD_LOGIC_VECTOR (15 downto 0));
-end RAM_2registres;
+end RAMregistres;
 
 architecture Behavioral of RAMregistres is
 
