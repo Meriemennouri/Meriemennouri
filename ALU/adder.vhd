@@ -13,6 +13,6 @@ end adder;
 architecture dataflow of adder is
 begin
     res <= a + b;
-    c_out <= '1' when res(15) = '1' else '0';
+    c_out <= '1' when a+b > 65535 else '0';
 end dataflow;
 
