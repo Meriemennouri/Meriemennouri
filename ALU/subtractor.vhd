@@ -10,6 +10,6 @@ entity subtractor is
 end subtractor;
 architecture dataflow of subtractor is
 begin
-    res <= a + b;
-    c_out <= '1' when conv_integer(a) > conv_integer(b) else '0';
+    res <= a - b;
+    c_out <= '1' when conv_integer(a) < conv_integer(b) else '0';
 end dataflow;
