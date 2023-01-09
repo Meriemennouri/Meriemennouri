@@ -5,11 +5,12 @@ use ieee.std_logic_unsigned.all;
 entity load is
     port (
         clk: in std_logic;
-    	operand: in std_logic_vector(11 downto 0);
+    	exec : in std_logic;
+    	operand: in std_logic_vector(11 downto 0)
     );
 end load;
 
-architecture dataflow of load is
+architecture behavioral of load is
 	component ram_16k is
 		    port ( clk_ram, io_ram : in std_logic;
 		           address_ram, ram_in : in std_logic_vector(15 downto 0);
@@ -21,19 +22,22 @@ architecture dataflow of load is
 		        reg_io : in  std_logic; -- 0 : read, 1 : write
            		reg : in  std_logic_vector(1 downto 0); -- 00 ac 01 ir 10 pc
            		reg_in : in std_logic_vector(15 downto 0);
-           		reg_out : out std_logic_vector(15 downto 0););
+           		reg_out : out std_logic_vector(15 downto 0));
 	end component;
-	component alu is 
-		port (
-		        clk_alu: in std_logic;
-		        A, B: in std_logic_vector(15 downto 0);
-        		op_alu: in std_logic; 
-        		result_alu: out std_logic_vector (15 downto 0);
-        		c_out: out std_logic 
-		     );
-	end component;
-	signal 
+	signal read_ram, write_reg : std_logic;
+	signal readed, readed_sig, df : std_logic_vector(15 downto 0);
+	signal ac : std_logic_vector(1 downto 0);
 begin
-	ram: ram_16k port map (clk_ram => clk, io_ram=>sig_ioram, address_
-end dataflow;
+	ram: ram_16k port map (clk_ram => clk, address_ram => operand, io_ram => read_ram, ram_out => readed, ram_in => df);
+	reg: registers port map (clk_reg => clk, reg_io => write_reg, reg => ac, reg_in => readed, reg_out => df);
+	process(clk)
+	begin
+		if clk'event and exec = '1' then
+			read_ram <= '0';
+			write_reg <= '1';
+		elsif clk'event and exec = '0' then
+			write_reg <= '0';
+		end if;
+	end process;
+end behavioral;
 
