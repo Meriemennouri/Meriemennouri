@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 
 entity registers is
-    Port ( clk : in  std_logic;
+    port ( clk : in  std_logic;
            io : in  std_logic; -- 0 : read, 1 : write
            reg : in  std_logic_vector(1 downto 0); -- 00 ac 01 ir 10 pc
            reg_in : in std_logic_vector(15 downto 0);
