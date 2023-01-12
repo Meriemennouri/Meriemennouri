@@ -1,12 +1,12 @@
 library ieee;
 use ieee.std_logic_1164.all;
-entity decodeur38 is
+entity decodeur4_12 is
 port(
 A : in std_logic_vector(3 downto 0);
 F: out std_logic_vector(11 downto 0)
 );
 end decodeur4_12;
-architecture flotDeDonnees of decodeur 4_12 is
+architecture flotDeDonnees of decodeur4_12 is
 begin
 with A select F <=
 "000000001" when "0000",
